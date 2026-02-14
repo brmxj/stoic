@@ -3,167 +3,642 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <title>纵横四海 - 致敬我们的青春</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 自定义配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a365d', // 深蓝（航海主色）
+                        secondary: '#8b5a2b', // 棕色（复古木色）
+                        accent: '#f5e7d3', // 米色（纸张色）
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
+                    },
+                }
+            }
         }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            position: relative;
-        }
-        
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 4px solid white;
-            background: #ddd;
-            position: absolute;
-            bottom: -50px;
-            overflow: hidden;
-        }
-        
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .content {
-            padding: 60px 30px 30px;
-            text-align: center;
-        }
-        
-        .name {
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-        }
-        
-        .title {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        .bio {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-        
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .link {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 14px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        .skills {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #eee;
-        }
-        
-        .skills h3 {
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .skill-tags {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .skill-tag {
-            background: #f0f0f0;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            color: #666;
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .bg-texture {
+                background-image: url('https://picsum.photos/id/1018/1920/1080');
+                background-size: cover;
+                background-position: center;
+                background-blend-mode: overlay;
+            }
+            .table-responsive {
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="avatar">
-                <!-- 可以替换为你的头像图片 URL -->
-                <img src="https://via.placeholder.com/100" alt="头像">
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-primary text-white shadow-lg">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold flex items-center gap-2">
+                <i class="fa-solid fa-ship"></i>
+                <span>纵横四海</span>
+            </a>
+            
+            <!-- 桌面端导航 -->
+            <ul class="hidden md:flex gap-6">
+                <li><a href="#overview" class="hover:text-accent transition-colors">游戏概述</a></li>
+                <li><a href="#background" class="hover:text-accent transition-colors">时代背景</a></li>
+                <li><a href="#features" class="hover:text-accent transition-colors">游戏特色</a></li>
+                <li><a href="#systems" class="hover:text-accent transition-colors">游戏系统</a></li>
+                <li><a href="#interface" class="hover:text-accent transition-colors">游戏界面</a></li>
+                <li><a href="#faq" class="hover:text-accent transition-colors">常见问题</a></li>
+            </ul>
+            
+            <!-- 移动端汉堡菜单 -->
+            <button id="menuBtn" class="md:hidden text-white text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-primary/95 backdrop-blur-sm">
+            <ul class="container mx-auto px-4 py-2 flex flex-col gap-3">
+                <li><a href="#overview" class="block py-2 hover:text-accent transition-colors">游戏概述</a></li>
+                <li><a href="#background" class="block py-2 hover:text-accent transition-colors">时代背景</a></li>
+                <li><a href="#features" class="block py-2 hover:text-accent transition-colors">游戏特色</a></li>
+                <li><a href="#systems" class="block py-2 hover:text-accent transition-colors">游戏系统</a></li>
+                <li><a href="#interface" class="block py-2 hover:text-accent transition-colors">游戏界面</a></li>
+                <li><a href="#faq" class="block py-2 hover:text-accent transition-colors">常见问题</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="bg-primary bg-texture py-20 md:py-32 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow">纵横四海</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-accent/90">
+                复古WAP文字网页游戏，重现QQ家园经典，开启属于你的航海传奇
+            </p>
+            <a href="#overview" class="inline-block bg-secondary hover:bg-secondary/80 text-white font-medium py-3 px-8 rounded-lg transition-colors">
+                了解更多 <i class="fa-solid fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 游戏概述 -->
+    <section id="overview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center text-primary">游戏概述</h2>
+            <div class="max-w-4xl mx-auto bg-accent/30 p-6 rounded-lg shadow-sm">
+                <p class="mb-4">
+                    「纵横四海」是一款复古WAP文字网页游戏，模仿曾经风靡一时的QQ家园系列文字游戏。游戏以明朝郑和下西洋的历史背景为题材，玩家扮演一名航海探险家，在大航海时代中纵横四海，体验惊心动魄的海上冒险。
+                </p>
+                <p class="mb-4">
+                    作为一款文字冒险类游戏，纵横四海采用纯文字叙述的方式呈现游戏世界，通过简洁的界面和流畅的文字描述，让玩家充分发挥想象力，沉浸在波澜壮阔的航海世界之中。游戏操作简单便捷，玩家只需通过点击链接或按钮即可完成各种指令，非常适合在移动设备上体验。
+                </p>
+                <p>
+                    游戏的核心玩法围绕探索、交易、战斗、社交四大元素展开。玩家需要在各个港口城市之间穿梭，完成任务、积累财富、提升声望，最终成为一代传奇航海王。游戏强调策略性和互动性，玩家不仅要经营好自己的船队，还要与其他玩家建立联系，共同探索未知的海域。
+                </p>
             </div>
         </div>
-        <div class="content">
-            <h1 class="name">罗辑</h1>
-            <p class="title">执剑人</p>
-            <p class="bio">
-                欢迎来到我的个人主页！这里是我的个人介绍和作品展示。
-                我热爱技术，专注于前端开发和用户体验设计。
-            </p>
-            <div class="links">
-                <a href="#" class="link">GitHub</a>
-                <a href="#" class="link">LinkedIn</a>
-                <a href="#" class="link">邮箱</a>
+    </section>
+
+    <!-- 时代背景 -->
+    <section id="background" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center text-primary">时代背景</h2>
+            <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-sm">
+                <p class="mb-4">
+                    故事发生在明朝永乐年间，伟大的航海家郑和率领庞大船队七下西洋，开辟了连接东西方的海上丝绸之路。玩家所处的时代正是这个航海史上最辉煌的时期，各国商船云集于港口，海上贸易繁荣昌盛，同时也暗藏着海盗、风暴、海怪等各种危险。
+                </p>
+                <p>
+                    在这样的时代背景下，玩家作为一名怀揣梦想的航海士，从威尼斯的码头出发，踏上追寻财富与荣耀的征程。沿途经过地中海、阿拉伯海、印度洋、南洋诸岛，最终抵达神秘的东方古国。每一片海域都有独特的风情，每一座港口都流传着动人的故事，等待着玩家去探索和发现。
+                </p>
             </div>
-            <div class="skills">
-                <h3>技能标签</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
+        </div>
+    </section>
+
+    <!-- 游戏特色 -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-primary">游戏特色</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- 特色1 -->
+                <div class="bg-accent/20 p-6 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-secondary">经典文字冒险体验</h3>
+                    <p>
+                        继承传统文字MUD游戏精髓，纯文字叙述构建游戏世界，对设备要求极低，文字描述承载更丰富内容，让玩家获得深刻沉浸感。
+                    </p>
+                </div>
+                
+                <!-- 特色2 -->
+                <div class="bg-accent/20 p-6 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fa-solid fa-swords"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-secondary">回合制战斗系统</h3>
+                    <p>
+                        经典回合制战斗模式，玩家与敌人轮流出招，核心在于属性相克和资源管理，需要根据敌我属性特点选择攻击、技能或防御策略。
+                    </p>
+                </div>
+                
+                <!-- 特色3 -->
+                <div class="bg-accent/20 p-6 rounded-lg hover:shadow-md transition-shadow">
+                    <div class="text-primary text-3xl mb-4">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-secondary">丰富的社交互动</h3>
+                    <p>
+                        完善的社交功能，支持添加好友、组建帮会、招募随从，帮会作为核心社交组织，可参与帮会任务、战争，争夺海上霸权。
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- 游戏系统 -->
+    <section id="systems" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-primary">游戏系统</h2>
+            
+            <!-- 系统标签导航 -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button class="system-tab active px-4 py-2 bg-primary text-white rounded-md" data-target="account">账号系统</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="novice">新手引导</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="character">角色系统</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="level">等级系统</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="monster">怪物系统</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="map">地图系统</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="combat">战斗系统</button>
+                <button class="system-tab px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors" data-target="social">社交系统</button>
+            </div>
+            
+            <!-- 系统内容区域 -->
+            <div class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-sm">
+                <!-- 账号系统 -->
+                <div id="account" class="system-content block">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">账号系统</h3>
+                    <h4 class="text-xl font-medium mb-2 text-primary">注册与登录</h4>
+                    <p class="mb-4">
+                        玩家进入游戏前需要注册账号。注册过程简单快捷，只需提供用户名和密码即可完成。用户名一旦设定便无法修改，请玩家谨慎选择。每个账号对应一个游戏角色，角色数据存储在服务器端，即使更换设备也能继续游戏。
+                    </p>
+                    <p>
+                        登录系统支持记住密码功能，方便玩家快速进入游戏。同时，游戏还提供了验证码机制，防止恶意登录和批量注册。为了账号安全，建议玩家定期更换密码，不要与其他网站共用密码。
+                    </p>
+                </div>
+                
+                <!-- 新手引导系统 -->
+                <div id="novice" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">新手引导系统</h3>
+                    <p class="mb-4">
+                        新手引导系统帮助初次进入游戏的玩家快速了解游戏基本操作和核心玩法。通过一系列精心设计的引导任务，玩家可以在短时间内掌握游戏要领，顺利开启冒险之旅。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-3 text-primary">引导流程</h4>
+                    <div class="table-responsive mb-6">
+                        <table class="min-w-full border-collapse">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th class="border p-2 text-center">步骤</th>
+                                    <th class="border p-2 text-center">引导内容</th>
+                                    <th class="border p-2 text-center">奖励</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-50">
+                                    <td class="border p-2 text-center">1.创建角色</td>
+                                    <td class="border p-2">选择角色名称，了解基础属性</td>
+                                    <td class="border p-2 text-center">新手礼包（含生命药水×10）</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 text-center">2.基础移动</td>
+                                    <td class="border p-2">学习城内移动操作，熟悉地图界面</td>
+                                    <td class="border p-2 text-center">100铜币</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border p-2 text-center">3.NPC对话</td>
+                                    <td class="border p-2">与酒馆老板对话，了解任务接取</td>
+                                    <td class="border p-2 text-center">200经验</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 text-center">4.首次战斗</td>
+                                    <td class="border p-2">在城外击败1只海滩巨蟹</td>
+                                    <td class="border p-2 text-center">新手木剑</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border p-2 text-center">5.使用药品</td>
+                                    <td class="border p-2">学习在战斗中使用生命药水</td>
+                                    <td class="border p-2 text-center">生命药水×5</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 text-center">6-10</td>
+                                    <td class="border p-2">装备穿戴、商店购物、任务完成、技能学习、探索城外</td>
+                                    <td class="border p-2 text-center">对应新手奖励</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">新手福利</h4>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>首日登录奖励：累计在线30分钟（500铜）、60分钟（1银）、120分钟（新手装备箱）</li>
+                        <li>七日登录奖励：生命药水、铜币、经验卡、装备、银币、背包券、稀有宠物蛋</li>
+                        <li>等级礼包：5/10/15/20级对应铜币、药水、装备、坐骑等奖励</li>
+                    </ul>
+                </div>
+                
+                <!-- 角色系统 -->
+                <div id="character" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">角色系统</h3>
+                    <h4 class="text-xl font-medium mb-2 text-primary">基础属性</h4>
+                    <p class="mb-4">
+                        每个角色创建时都会获得一组基础属性，包括等级、体力、攻击、防御、敏捷等，每项属性都有其独特的作用。等级是衡量角色实力的最直观指标，升级时会获得属性点奖励，玩家可自由分配。
+                    </p>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>体力：角色进行各种活动的基础资源，随时间自动恢复</li>
+                        <li>攻击/防御：决定战斗中的伤害输出和承受能力</li>
+                        <li>敏捷：影响行动顺序和闪避能力</li>
+                    </ul>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">经验与升级</h4>
+                    <p>
+                        经验来源包括主线任务、击败敌人、探索新区域、参与活动等。每次升级除了基础属性提升，还会获得技能点，可用于学习或提升技能等级。
+                    </p>
+                </div>
+                
+                <!-- 等级系统 -->
+                <div id="level" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">等级系统</h3>
+                    <p class="mb-4">
+                        纵横四海的角色等级最高可达<strong>220级</strong>。等级是衡量角色实力和成长进度的核心指标，决定了玩家能够进入的区域、解锁的功能和挑战的敌人。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-3 text-primary">等级属性表</h4>
+                    <div class="table-responsive mb-6">
+                        <table class="min-w-full border-collapse">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th class="border p-2 text-center">等级范围</th>
+                                    <th class="border p-2 text-center">生命值</th>
+                                    <th class="border p-2 text-center">攻击力</th>
+                                    <th class="border p-2 text-center">升级难度</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-50">
+                                    <td class="border p-2 text-center">1-20级</td>
+                                    <td class="border p-2 text-center">每级+10</td>
+                                    <td class="border p-2 text-center">每级+2</td>
+                                    <td class="border p-2 text-center">简单</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 text-center">21-50级</td>
+                                    <td class="border p-2 text-center">每级+15</td>
+                                    <td class="border p-2 text-center">每级+3</td>
+                                    <td class="border p-2 text-center">容易</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="border p-2 text-center">51-100级</td>
+                                    <td class="border p-2 text-center">每级+20</td>
+                                    <td class="border p-2 text-center">每级+5</td>
+                                    <td class="border p-2 text-center">中等</td>
+                                </tr>
+                                <tr>
+                                    <td class="border p-2 text-center">101-220级</td>
+                                    <td class="border p-2 text-center">每级+30~80</td>
+                                    <td class="border p-2 text-center">每级+8~20</td>
+                                    <td class="border p-2 text-center">困难~极难</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">等级奖励</h4>
+                    <p>
+                        玩家达到5/10/20/30/50/100/150/200/220级时，可领取对应等级奖励，等级越高奖励越丰厚，包括金币、装备等物资。
+                    </p>
+                </div>
+                
+                <!-- 怪物系统 -->
+                <div id="monster" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">怪物系统</h3>
+                    <p class="mb-4">
+                        怪物系统是游戏战斗体验的核心组成部分，按照危险程度分为：<strong>普通怪物</strong>、<strong>精英怪物</strong>、<strong>Boss怪物</strong>和<strong>事件怪物</strong>。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">怪物类型</h4>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>普通怪物：最常见，实力较弱，主要经验来源</li>
+                        <li>精英怪物：普通怪物强化版，实力2-3倍，高概率掉落精良装备</li>
+                        <li>Boss怪物：区域终极挑战，必定掉落传说级装备</li>
+                        <li>事件怪物：限时活动相关，掉落专属奖励</li>
+                    </ul>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">掉落规则</h4>
+                    <p>
+                        击败怪物可获得经验（=怪物等级×5）、金币（普通怪概率掉落，精英/Boss必掉）、道具（品质随怪物等级提升）。
+                    </p>
+                </div>
+                
+                <!-- 地图系统 -->
+                <div id="map" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">地图系统</h3>
+                    <h4 class="text-xl font-medium mb-2 text-primary">城内地图</h4>
+                    <p class="mb-4">
+                        每个港口城市都有独立的城内地图，采用网格形式呈现，包含酒馆、市场、造船厂等功能地点，玩家只能移动到相邻地点，增加策略性。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">城外探索</h4>
+                    <p>
+                        城门通往海滩、暗礁、密林等城外区域，城外地点不会显示在地图上，探索过程中可能遭遇随机战斗，增加冒险的未知性和趣味性。
+                    </p>
+                </div>
+                
+                <!-- 战斗系统 -->
+                <div id="combat" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">战斗系统</h3>
+                    <h4 class="text-xl font-medium mb-2 text-primary">回合制战斗机制</h4>
+                    <p class="mb-4">
+                        战斗开始时根据敏捷值决定行动顺序，每场战斗最多50回合。玩家可选择普通攻击、技能释放、使用道具、防御或逃跑。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">伤害计算公式</h4>
+                    <p class="mb-4 bg-gray-100 p-3 rounded inline-block">
+                        最终伤害 = (攻击方攻击力 - 防御方防御力) × 技能倍率 × (1 ± 10%浮动系数)
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">死亡与复活</h4>
+                    <p>
+                        战斗失败会损失10%经验、10%铜币、装备耐久下降20%，可选择免费复活（复活点）、原地复活（1金条）或道具复活。
+                    </p>
+                </div>
+                
+                <!-- 社交系统 -->
+                <div id="social" class="system-content hidden">
+                    <h3 class="text-2xl font-semibold mb-4 text-secondary">社交系统</h3>
+                    <h4 class="text-xl font-medium mb-2 text-primary">好友系统</h4>
+                    <p class="mb-4">
+                        支持添加好友、查看在线状态、互相赠送体力，好友列表可分组管理，方便组队完成任务。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">聊天系统</h4>
+                    <p class="mb-4">
+                        提供世界频道、帮会频道、私聊频道、系统频道，支持文字、表情发送，可屏蔽指定玩家消息。
+                    </p>
+                    
+                    <h4 class="text-xl font-medium mb-2 text-primary">帮会系统</h4>
+                    <p>
+                        核心社交组织，可创建/加入帮会，参与帮会任务、战争，帮会设施升级可获得更多福利，如仓库、商店、训练场等。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏界面 -->
+    <section id="interface" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center text-primary">游戏界面</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4 text-secondary">首页布局</h3>
+                <p class="mb-6">
+                    游戏首页采用经典的三段式布局，从上到下依次为：标题区、信息展示区和功能导航区。这种布局简洁明了，玩家可以快速找到需要的功能入口。
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-accent/20 p-6 rounded-lg">
+                        <h4 class="text-xl font-medium mb-3 text-primary">信息展示区</h4>
+                        <p>
+                            核心界面区域，显示当前位置、场景描述、可用出口，以及系统公告、任务提示、好友消息等动态信息。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-accent/20 p-6 rounded-lg">
+                        <h4 class="text-xl font-medium mb-3 text-primary">功能导航区</h4>
+                        <p>
+                            位于页面底部，提供状态、物品、聊天、好友、帮会、地图等快捷功能入口，支持快速操作。
+                        </p>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-semibold mb-4 text-secondary">操作指南</h3>
+                <p class="mb-4">
+                    游戏的所有操作都通过点击链接或按钮完成，支持键盘快捷键（方向键移动、回车确认、ESC取消），操作反馈会通过界面变化或提示信息展示。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center text-primary">常见问题</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ折叠面板 -->
+                <div class="space-y-4">
+                    <!-- 问题1 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="faq-question w-full text-left p-4 font-medium text-primary flex justify-between items-center">
+                            忘记密码怎么办？
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-answer px-4 pb-4 hidden">
+                            <p>
+                                忘记密码的玩家可以通过注册邮箱或手机号找回密码。如果连注册信息也忘记了，只能联系客服处理。为了账号安全，建议玩家妥善保管注册信息。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题2 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="faq-question w-full text-left p-4 font-medium text-primary flex justify-between items-center">
+                            游戏卡顿/加载缓慢如何解决？
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-answer px-4 pb-4 hidden">
+                            <p class="mb-2">
+                                首先检查网络连接是否正常，可尝试以下方法：
+                            </p>
+                            <ul class="list-disc pl-6">
+                                <li>刷新页面或清除浏览器缓存</li>
+                                <li>禁用可能影响游戏的浏览器插件</li>
+                                <li>关闭其他后台程序释放系统资源</li>
+                                <li>降低浏览器画质设置（老旧设备）</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题3 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="faq-question w-full text-left p-4 font-medium text-primary flex justify-between items-center">
+                            死亡惩罚可以避免吗？
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-answer px-4 pb-4 hidden">
+                            <p>
+                                死亡惩罚无法完全避免，但可以通过以下方式降低损失：
+                            </p>
+                            <ul class="list-disc pl-6">
+                                <li>挑战怪物前评估自身实力，避免越级挑战</li>
+                                <li>随身携带足够的恢复药品</li>
+                                <li>设置好复活点，减少跑图距离</li>
+                                <li>组队冒险互相支援</li>
+                                <li>使用原地复活道具（消耗1金条）可避免经验损失</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题4 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="faq-question w-full text-left p-4 font-medium text-primary flex justify-between items-center">
+                            如何快速升级？
+                            <i class="fa-solid fa-chevron-down text-sm transition-transform"></i>
+                        </button>
+                        <div class="faq-answer px-4 pb-4 hidden">
+                            <p>
+                                快速升级的核心策略：
+                            </p>
+                            <ul class="list-disc pl-6">
+                                <li>优先完成主线任务（经验最多）</li>
+                                <li>挑战与自身等级相近的精英怪物</li>
+                                <li>参与日常活动和限时副本</li>
+                                <li>使用经验加成卡提升获取效率</li>
+                                <li>加入活跃帮会，享受训练场经验加成</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-ship"></i> 纵横四海
+                    </h3>
+                    <p class="text-gray-400">复古WAP文字网页游戏 · 重现经典</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="mb-2">部署于 GitHub Pages</p>
+                    <p class="text-gray-400 text-sm">© 2026 纵横四海游戏官网 保留所有权利</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+        
+        // 游戏系统标签切换
+        const systemTabs = document.querySelectorAll('.system-tab');
+        const systemContents = document.querySelectorAll('.system-content');
+        
+        systemTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有激活状态
+                systemTabs.forEach(t => {
+                    t.classList.remove('active', 'bg-primary', 'text-white');
+                    t.classList.add('bg-gray-200');
+                });
+                
+                // 添加当前激活状态
+                tab.classList.add('active', 'bg-primary', 'text-white');
+                tab.classList.remove('bg-gray-200');
+                
+                // 隐藏所有内容
+                systemContents.forEach(content => {
+                    content.classList.add('hidden');
+                    content.classList.remove('block');
+                });
+                
+                // 显示对应内容
+                const target = tab.getAttribute('data-target');
+                document.getElementById(target).classList.add('block');
+                document.getElementById(target).classList.remove('hidden');
+            });
+        });
+        
+        // FAQ折叠面板
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                
+                // 关闭其他FAQ
+                faqQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.nextElementSibling.classList.add('hidden');
+                        q.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
