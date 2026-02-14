@@ -1,2 +1,2 @@
-# stoic.github.io
+# stoic
 白日梦想家的个人博客
